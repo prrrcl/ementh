@@ -1,0 +1,41 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
+.menu-bottom{
+  font-family: $icons;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  display: flex;
+  height: 60px;
+  width: 100%;
+  color:$primary-color;
+  background: $second-color;
+  ul{
+    font-size: 1.875rem;
+    list-style: none;
+    display: flex;
+    align-items:center;
+    width: 100%;
+    justify-content: space-evenly;
+    li{
+      position: relative;
+      a{
+        color: $primary-color;
+        text-decoration: none;
+        display: flex;
+        svg{
+          height: 28px;
+        }
+      }
+      span{
+        width: 10px;
+        height: 10px;
+        background: #2E9EFF;
+        border-radius: 50%;
+        position: absolute;
+        top:5px;
+        right: 0;
+      }
+    }
+  }
+}

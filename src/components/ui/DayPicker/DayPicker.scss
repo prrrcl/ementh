@@ -1,0 +1,83 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
+.calendar{
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  header{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    div{
+      &:nth-child(2){
+        color: $gray-borders;
+        letter-spacing: 2px;
+      }
+    }
+  }
+  .calendar-table{
+    border-radius: 10px;
+    border:1px solid $primary-color;
+    padding: 10px;
+    position: relative;
+    &:after{
+      position: absolute;
+      content: '';
+      width: 14.2857142%;
+      height: calc(100% - 55px);
+      top: 57%;
+      left: 8px;
+      transform: translateY(-50%);
+      background: #f2f2f2;
+      border-radius: 10px;
+      z-index: -1;
+    }
+    .headers-dias{
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      position: relative;
+      margin-bottom: 30px;
+      &:after{
+        width: 80%;
+        height: 1px;
+        background: $gray-borders;
+        content:'';
+        bottom:-10px;
+        position: absolute;
+      }
+      abbr{
+        border-bottom: 0;
+        text-decoration: none; 
+        width: 14.2857142%;
+        text-align: center;
+      }
+    }
+    .row-dias{
+      display: flex;
+      margin-bottom: 15px;
+      .day{
+        width: 14.2857142%;
+        text-align: center;
+      }
+    }
+  }
+}
+.is-festive{
+  color: #ccc;
+}
+.today{
+  position: relative;
+  &:after{
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #00000057;
+  }
+}

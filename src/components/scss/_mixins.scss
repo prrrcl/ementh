@@ -1,0 +1,9 @@
+@mixin media($width, $type: max) {
+  @if map_has_key($prrrcl-breakpoints, $width) {
+    $width: map_get($prrrcl-breakpoints, $width);
+
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
