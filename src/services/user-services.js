@@ -4,6 +4,7 @@ class UserService {
   constructor(){
     this.user = axios.create({
       baseURL: 'http://localhost:5000/api',
+      withCredentials: true // Para que viajen tus datos por cookies
     })
   }
 
