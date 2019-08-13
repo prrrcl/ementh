@@ -8,7 +8,7 @@ Ementh is a webapp for Crossfit gyms. It is designed for the client (book classe
 ## User Stories
 ### As user
 -  **404:** As an anon/user/admin I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
--  **Signup:** As an anon I can recieve a invitation for sign up in the platform so that I can start booking class and edit my profile.
+-  **Signup:** As an anon I can receive an invitation for sign up in the platform so that I can start booking class and edit my profile.
 -  **Login:** As a user I can login to the platform so that I can book classes.
 -  **Logout:** As a user I can logout from the platform so no one else can use it.
 -  **Book Class** As a user I can book on class list.
@@ -67,11 +67,10 @@ Admin profile:
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
-- Search component
-  - Output: change(terms: string)
+- Menu Top
+- Navbar Bottom
+- Class card
+- Day picker
 
 ## IO
 
@@ -83,13 +82,14 @@ Admin profile:
   - auth.signup(user)
   - auth.logout()
   - auth.me()
-  - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)   
+  - auth.getUser() 
+** **
+- Class Service
+  - classes.list()
+  - classes.create(data)
+  - classes.edit(id)
+  - classes.delete(id)
+
 
 # Server
 
@@ -104,6 +104,7 @@ email - String // required & unique
 password - String // required
 box - [ObjectID<Box>]
 suscription - Number
+isActive - Boolean
 ```
 
 Box model
@@ -160,7 +161,7 @@ date - Date
 
 ### Trello / Wireframes
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Ementh on Trello](https://trello.com/b/FHalxYvP/ementh)
 [AdobeXD Wireframes](https://xd.adobe.com/view/40b36574-2f89-4568-5062-33ea3e4de831-3682/?fullscreen)
 ### Git
 
