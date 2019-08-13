@@ -1,15 +1,16 @@
-import React ,{ useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
+
+import withAuth from '../../../hoc/withAuth';
+
 import './MenuSubComponent.min.css';
 import { ReactComponent as Ementh } from "../../../icon-calendar.svg";
 
-export default function MenuSubComponent() {
-
-  const [isLogged] = useState(true);
-
+function MenuSubComponent(props) {
+  const { isLoggedIn } = props
   return (
     <>
-    {isLogged &&
+    {isLoggedIn &&
     <footer className="menu-bottom">
       <ul>
         <li><Link to={"/calendar"}><Ementh/></Link></li>
@@ -22,3 +23,4 @@ export default function MenuSubComponent() {
     </>
   )
 }
+export default withAuth(MenuSubComponent)

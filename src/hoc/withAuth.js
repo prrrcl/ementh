@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AuthContext } from '../contexts/auth-context'
+import { AuthContext } from '../context/auth-context'
 const withAuth = (Comp) =>{
   return class WithAuth extends Component{
     render(){

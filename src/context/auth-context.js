@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import authService from '../services/auth-service'
+import Loading from '../components/ui/Loading/Loading'
+import authService from '../services/auth-services'
 
 export const AuthContext = React.createContext();
 
@@ -8,7 +9,8 @@ class AuthProvider extends Component {
   state = {
     isLoggedIn: false,
     user: {},
-    isLoading: true
+    isLoading: true,
+    isOut: false
   }
 
   userSignUp = (user) =>{
@@ -44,26 +46,39 @@ class AuthProvider extends Component {
   componentDidMount() {
     authService.me()
     .then((user)=>{
-      this.setState({
-        user,
-        isLoggedIn: true,
-        isLoading:false
-      })
+      setTimeout(()=>{
+        this.setState({
+          isOut:true
+        })
+      },1000)
+      setTimeout(()=>{
+        this.setState({
+          isLoggedIn: true,
+          user,
+          isLoading:false
+        })
+      },2000)
     })
     .catch(()=>{
-      this.setState({
-        user: {},
-        isLoggedIn: false,
-        isLoading:false
-      })
+      setTimeout(()=>{
+        this.setState({
+          user: {},
+          isLoggedIn: false,
+          isOut:true
+        })
+      },1000)
+      setTimeout(()=>{
+        this.setState({
+          isLoading:false
+        })
+      },2000)
     })
   }
 
   render() {
-    const { user, isLoggedIn, isLoading } = this.state;
+    const { user, isLoggedIn, isOut } = this.state;
     return (
       <>
-      {isLoading ? <p>Loading</p> : (
         <AuthContext.Provider value={
           {
             user,
@@ -73,9 +88,9 @@ class AuthProvider extends Component {
             logout: this.userLogOut,
           }
          }>
+          <Loading isOut={isOut}/>
           {this.props.children}
         </AuthContext.Provider>
-      )} 
       
       </>
     )

@@ -14,6 +14,12 @@ class AuthService {
       .then(({ data }) => data);
   }
 
+  completeSignUp(user){
+    const { username, email, password, token } = user;
+    return this.this.auth.post('/auth/completesignup', {username,email,password,token})
+    .then(({data})=> data);
+  }
+
   login(user) {
     const { username, password } = user;
     return this.auth.post('/auth/login', {username, password})

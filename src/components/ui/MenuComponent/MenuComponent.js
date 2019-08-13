@@ -1,12 +1,15 @@
 import React,  { useState, useEffect, useRef }  from 'react'
 import { Link } from "react-router-dom";
+
+import withAuth from '../../../hoc/withAuth';
+
 import { ReactComponent as Ementh } from "../../../logotipo.svg";
 import { Power3, TimelineMax  } from "gsap/all";
-import './MenuComponent.css'
+import './MenuComponent.css';
 
-export default function MenuComponent(props) {
+function MenuComponent(props) {
   
-  const {isLogged, handleCloseSession} = props; 
+  const {isLoggedIn, logout } = props; 
   const [isOpened, setOpened] = useState(false);
   const [animation, setAnimation] = useState();
 
@@ -42,7 +45,7 @@ export default function MenuComponent(props) {
   }, []);
   return (
     <header className="sticky-header">
-    {isLogged &&
+    {isLoggedIn &&
       <nav className="navbar-mobile">
         <div onClick={() => {handleOpenMenu()}} className={`profile-hamburger ${classOpened}`}>
           <div className="bg"></div>
@@ -76,7 +79,7 @@ export default function MenuComponent(props) {
           <li>
             <Link
                   to={"/"}
-                  onClick={() => {handleOpenMenu(); handleCloseSession()}}
+                  onClick={() => {handleOpenMenu(); logout()}}
                 >Cerrar sesión</Link>
           </li>
           
@@ -87,3 +90,5 @@ export default function MenuComponent(props) {
     </header>
   )
 }
+
+export default withAuth(MenuComponent);
