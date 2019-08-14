@@ -13,7 +13,6 @@ export default function Calendar(props) {
   const [day, setDay] = useState(null);
   const [lastDaySelected, setLastDaySelected] = useState(null);
   const [classes, setClasses] = useState(null);
-  const isLogged = props.isLogged;
   const newDate = (day) =>{
     return new Date(day)
   }
@@ -48,7 +47,7 @@ export default function Calendar(props) {
  
   return (
     <>
-    {isLogged || <Redirect to='/login'/>}
+    
     <div className={`select-date ${classHasDay}`}>
     <h1 className="title-page">Calendario</h1>
       <div className="container">

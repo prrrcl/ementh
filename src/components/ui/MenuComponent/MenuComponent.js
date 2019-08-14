@@ -9,7 +9,7 @@ import './MenuComponent.css';
 
 function MenuComponent(props) {
   
-  const {isLoggedIn, logout } = props; 
+  const { logout } = props; 
   const [isOpened, setOpened] = useState(false);
   const [animation, setAnimation] = useState();
 
@@ -45,7 +45,7 @@ function MenuComponent(props) {
   }, []);
   return (
     <header className="sticky-header">
-    {isLoggedIn &&
+    
       <nav className="navbar-mobile">
         <div onClick={() => {handleOpenMenu()}} className={`profile-hamburger ${classOpened}`}>
           <div className="bg"></div>
@@ -56,7 +56,8 @@ function MenuComponent(props) {
         <ul ref={elements => {
             links = elements;
           }} className={`items-menu ${classOpened}`}>
-          <li><img src="https://scontent.fmad3-7.fna.fbcdn.net/v/t1.0-9/10007421_785919864774888_951160337752481978_n.jpg?_nc_cat=103&_nc_oc=AQnokk9jHmTvx-0NZ4GZtUAiq5e81DFvgEkGSvyeU74UjmV43xZiQhfHULroM9NdZgI&_nc_ht=scontent.fmad3-7.fna&oh=eb23a2f49c8abd623d1cdfa3f3b303ca&oe=5DE19EA8" alt=""/></li>
+            
+          <li><img src={props.user.profileImg} alt=""/></li>
           <li>
             <Link
                   to={"/"}
@@ -86,7 +87,7 @@ function MenuComponent(props) {
           
         </ul>
       </nav>
-    }
+    
     </header>
   )
 }

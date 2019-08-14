@@ -1,0 +1,36 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
+.complete-profile{
+  padding: 0 25px;
+  text-align: center;
+}
+.form-sign-up{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  input{
+    font-size: 1.15rem;
+    font-family:$font ;
+    border:1px solid $gray-borders;
+    transition: $transition;
+    padding: 21px 40px;
+    border-radius: 10px;
+    outline: none;
+    margin:0 0 30px;
+    &:focus{
+      border-color: $primary-color;
+      transition: $transition;
+    }
+  }
+  div{
+    text-align: center;
+    button{
+      font-family: $font;
+      color:white;
+      padding: 25px 33px;
+      font-size: 2rem;
+      border-radius: 10px;
+      background: $primary-color;
+    }
+  }
+}

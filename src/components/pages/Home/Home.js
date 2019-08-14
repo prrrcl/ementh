@@ -1,14 +1,19 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom'
 import './Home.min.css'
-export default function Home(props) {
+import withAuth from '../../../hoc/withAuth';
 
-const {currentUser,isLogged} = props
+const Home = (props) => {
+useEffect(() => {
+  effect
+  return () => {
+    cleanup
+  };
+}, [input])
   
   return (
     <>
-    {isLogged || <Redirect to='/login'/>}
-    {isLogged &&
+    
     <section className="home-section">
       <Link to="/" className="pages-wrapper">
 
@@ -30,13 +35,14 @@ const {currentUser,isLogged} = props
         </article>
 
       </Link>
-      <Link to={`/friends/${currentUser.username}`} className="pages-wrapper">
+      <Link to={`/friends/${props.user.username}`} className="pages-wrapper">
         <article className="pages">
           <div className="content-pages">Amigos</div>
         </article>
       </Link>
     </section>
-    }
+    
     </>
   )
 }
+export default withAuth(Home)

@@ -12,7 +12,10 @@ class AuthProvider extends Component {
     isLoading: true,
     isOut: false
   }
-
+  adminInvite = ( user ) => {
+    return authService.invite(user)
+    .then((user) => user)
+  }
   userSignUp = (user) =>{
     return authService.signup(user)
     .then((user)=> {
@@ -20,6 +23,17 @@ class AuthProvider extends Component {
         user,
         isLoggedIn:true
       })
+    })
+  }
+  
+  userCompleteSignUp = (user) => {
+    return authService.completeSignUp(user)
+    .then((user)=> {
+      this.setState({
+        user,
+        isLoggedIn:true
+      })
+      return user;
     })
   }
 
@@ -51,13 +65,12 @@ class AuthProvider extends Component {
           isOut:true
         })
       },1000)
-      setTimeout(()=>{
         this.setState({
           isLoggedIn: true,
           user,
           isLoading:false
         })
-      },2000)
+
     })
     .catch(()=>{
       setTimeout(()=>{
@@ -67,11 +80,11 @@ class AuthProvider extends Component {
           isOut:true
         })
       },1000)
-      setTimeout(()=>{
+     
         this.setState({
           isLoading:false
         })
-      },2000)
+      
     })
   }
 
@@ -85,6 +98,8 @@ class AuthProvider extends Component {
             isLoggedIn,
             login: this.userLogin,
             signup: this.userSignUp,
+            invite: this.adminInvite,
+            completeSignUp: this.userCompleteSignUp,
             logout: this.userLogOut,
           }
          }>

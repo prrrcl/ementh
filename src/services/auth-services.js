@@ -13,16 +13,27 @@ class AuthService {
     return this.auth.post('/auth/signup', {username, password})
       .then(({ data }) => data);
   }
-
+  invite(user) {
+    const {email} = user; 
+    return this.auth.post('/auth/invite', {email})
+    .then(({data})=> data)
+  }
   completeSignUp(user){
     const { username, email, password, token } = user;
-    return this.this.auth.post('/auth/completesignup', {username,email,password,token})
-    .then(({data})=> data);
+    return this.auth.post('/auth/completesignup', {username,email,password,token})
+    .then(({data})=> {
+      return data
+    })
   }
-
+  getInfoSignUp(email, token){
+    return this.auth.get('/auth/completesignup').then(response =>{
+      const data = response.data;
+     return data
+    } )
+  }
   login(user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/login', {username, password})
+    const { email, password } = user;
+    return this.auth.post('/auth/login', {email, password})
       .then(({ data }) => data);
   }
 
