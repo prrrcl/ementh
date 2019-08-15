@@ -35,6 +35,7 @@
   }
 }
 .hours{
+  padding: 0 25px;
   article{
     width: 100%;
     display: flex;
@@ -42,23 +43,27 @@
     &:first-child{
       margin:30px 0 15px;
     }
-    div.box{
-      -webkit-border-top-left-radius: 10px;
-      -webkit-border-bottom-left-radius: 10px;
-      -moz-border-radius-topleft: 10px;
-      -moz-border-radius-bottomleft: 10px;
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-      border: {
-        left:1px solid #ccc;
-        top:1px solid #ccc;
-        bottom:1px solid #ccc;
-      }
-      padding:20px 0px 20px 20px;
-      width: 70%;
+    div.boxDad{
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      width: 70%;
+      div.box{
+        -webkit-border-top-left-radius: 10px;
+        -webkit-border-bottom-left-radius: 10px;
+        -moz-border-radius-topleft: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border: {
+          left:1px solid #ccc;
+          top:1px solid #ccc;
+          bottom:1px solid #ccc;
+        }
+        padding:20px 0px 20px 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
     button{
       width: 30%;

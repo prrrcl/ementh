@@ -1,26 +1,30 @@
 import axios from 'axios';
 
-class UserService {
+class ClassService {
   constructor(){
     this.user = axios.create({
-      baseURL: 'http://localhost:5000/api',
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/api',
       withCredentials: true // Para que viajen tus datos por cookies
     })
   }
 
-  getAllFriends(currentUserId) {
-    if(currentUserId){
-      return this.user.get(`/friends/${currentUserId.username}`).then(response =>{
-        const newArr = response.data;
-       return newArr
-      } )
+  bookClass(user, idClass){
+    return this.user.post('/bookclass', {user, idClass})
+      .then(({ data }) => data);
+  }
+
+  getClassesOfUser(user){
+    if(user){
+      return this.user.post('/classes', user)
+      .then(data => data)
     }
   }
 
   getClasses(day){
     if(day){
-      return this.user.post('/getcalendardates', day).then(response =>{
-        return response
+      return this.user.post('/getcalendardates', day)
+        .then(response =>{
+          return response
       })
     }
   }
@@ -41,6 +45,6 @@ class UserService {
 
 }
 
-const userService = new UserService();
+const classService = new ClassService();
 
-export default userService;
+export default classService;

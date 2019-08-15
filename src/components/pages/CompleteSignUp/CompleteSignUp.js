@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import authService from '../../../services/auth-services';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup'; // Para validación
@@ -7,8 +7,6 @@ import withAuth from '../../../hoc/withAuth';
 import './CompleteSignUp.min.css'
 
 function CompleteSignUp({errors, touched, isSubmitting, login, ...props}) {
-  const { mail, token } = props.match.params
-  const  [dataUser, setDataUser] = useState({})
 
   return (
     <div className="complete-profile">

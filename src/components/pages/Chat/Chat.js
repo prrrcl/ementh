@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 export default function Chat(props) {
   const isLogged = props.isLogged;
   const [messages, setMessages] = useState([]);
-  const [socket] = useState(io('http://localhost:5000/'));
+  const [socket] = useState(io(process.env.BACKEND_DOMAIN));
   
   useEffect(function () {
     let isSubscribed = true

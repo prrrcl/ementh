@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch , Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 
 import AuthProvider from './context/auth-context'
 
@@ -29,7 +29,7 @@ function App() {
     <AuthProvider>
     
     {/* REVISAR ESTADO LOGIN */}
-    <PrivateRoute><MenuComponent/></PrivateRoute> 
+    <MenuComponent/>
  
     <main className="main-content">
       <Switch>

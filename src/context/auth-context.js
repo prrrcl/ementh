@@ -12,6 +12,7 @@ class AuthProvider extends Component {
     isLoading: true,
     isOut: false
   }
+  
   adminInvite = ( user ) => {
     return authService.invite(user)
     .then((user) => user)
