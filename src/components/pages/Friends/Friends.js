@@ -1,5 +1,5 @@
 import React , { useState, useEffect }from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Friends.min.css';
 
 export default function Friends(props) {
@@ -9,7 +9,7 @@ export default function Friends(props) {
   
   return (
     <div>
-      {isLogged || <Redirect to='/login'/>}
+      
       {isLogged && 
         <>
        {friends.map((friend)=>{

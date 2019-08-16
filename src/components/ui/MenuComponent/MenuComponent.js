@@ -9,10 +9,10 @@ import './MenuComponent.css';
 
 function MenuComponent(props) {
   
-  const { logout } = props; 
+  const { logout, isLoggedIn } = props; 
   const [isOpened, setOpened] = useState(false);
   const [animation, setAnimation] = useState();
-
+  
   let links = useRef(null);
 
   const handleOpenMenu = () => {
@@ -44,50 +44,51 @@ function MenuComponent(props) {
         0.1).reverse())
   }, []);
   return (
-    <header className="sticky-header">
+    <header className={`sticky-header`}>
     
-      <nav className="navbar-mobile">
-        <div onClick={() => {handleOpenMenu()}} className={`profile-hamburger ${classOpened}`}>
-          <div className="bg"></div>
-        </div>
-        <div className={`logo-head ${classOpened}`}>
-       <Link to={"/"}><Ementh/></Link> 
-        </div>
-        <ul ref={elements => {
-            links = elements;
-          }} className={`items-menu ${classOpened}`}>
-            
-          <li><img src={props.user.profileImg} alt=""/></li>
-          <li>
-            <Link
-                  to={"/"}
-                  onClick={handleOpenMenu}
-                >Perfil</Link>
-          </li>
-          <li>
-            <Link
-                  to={"/calendar"}
-                  onClick={handleOpenMenu}
-                >Calendario</Link>
-          </li>
-          <li>
-            <Link
-                  to={"/"}
-                  onClick={handleOpenMenu}
-                >Administrar pagos</Link>
-          </li>
-          <div className="divisor"></div>
-          <li>
-            <Link
-                  to={"/"}
-                  onClick={() => {handleOpenMenu(); logout()}}
-                >Cerrar sesión</Link>
-          </li>
-          
-          
-        </ul>
-      </nav>
-    
+     <nav className="navbar-mobile">
+     <div onClick={() => {handleOpenMenu()}} className={`profile-hamburger ${classOpened}`}>
+       <div className="bg"></div>
+     </div>
+     <div className={`logo-head ${classOpened}`}>
+    <Link to={"/"}><Ementh/></Link> 
+     </div>
+     <ul ref={elements => {
+         links = elements;
+       }} className={`items-menu ${classOpened}`}>
+         
+       <li><img src={props.user.profileImg} alt=""/></li>
+       <li>
+         <Link
+               to={"/"}
+               onClick={handleOpenMenu}
+             >Perfil</Link>
+       </li>
+       <li>
+         <Link
+               to={"/calendar"}
+               onClick={handleOpenMenu}
+             >Calendario</Link>
+       </li>
+       <li>
+         <Link
+               to={"/"}
+               onClick={handleOpenMenu}
+             >Administrar pagos</Link>
+       </li>
+       <div className="divisor"></div>
+       <li>
+         <Link
+               to={"/"}
+               onClick={() => {handleOpenMenu(); logout()}}
+             >Cerrar sesión</Link>
+       </li>
+       
+       
+     </ul>
+   </nav>
+
+     
     </header>
   )
 }

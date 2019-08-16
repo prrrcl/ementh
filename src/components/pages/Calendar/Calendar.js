@@ -1,11 +1,11 @@
-import React , { useState, useEffect, useRef } from 'react'
-import { Redirect } from 'react-router-dom'
+import React , { useState } from 'react'
 
 import 'react-daypicker/lib/DayPicker.css';
 import './Calendar.min.css'
 import DayPicker from '../../ui/DayPicker/DayPicker';
 import ReserveClass from '../../ui/ReserveClass/ReserveClass'
 import classService from '../../../services/class-services'
+import withAuth from '../../../hoc/withAuth'
 import moment from 'moment';
 import 'moment/locale/es';
 moment.locale('es')
@@ -33,7 +33,8 @@ const Calendar = (props) => {
     const newDate = day.toLocaleDateString('es-ES').split('/').reduce((a,b)=>{
       return [a+b];
     });
-    const classesFromDb = classService.getClasses(newDate)
+    const user = props.user._id;
+    const classesFromDb = classService.getClasses(newDate, user)
     .then((response)=>{
         setClasses(response.data);
     })
@@ -68,7 +69,7 @@ const Calendar = (props) => {
                 {classes &&
                   classes.map((classe, index)=>{
                     return(
-                      <ReserveClass index={index} classe={classe}/>
+                      <ReserveClass key={classe._id} classe={classe}/>
                     )
                   })
                 }
@@ -81,4 +82,4 @@ const Calendar = (props) => {
     </>
   )
 }
-export default Calendar;
+export default withAuth(Calendar);

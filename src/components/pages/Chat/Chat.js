@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
 import io from 'socket.io-client';
 
 export default function Chat(props) {
@@ -38,7 +37,7 @@ export default function Chat(props) {
   });
   return (
     <div>
-      {isLogged || <Redirect to='/login'/>}
+      
       Chat
       <input 
       type="text" 

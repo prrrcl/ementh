@@ -78,35 +78,31 @@ class AuthProvider extends Component {
         this.setState({
           user: {},
           isLoggedIn: false,
-          isOut:true
-        })
-      },1000)
-     
-        this.setState({
+          isOut:true,
           isLoading:false
         })
-      
+      },1000)
     })
   }
 
   render() {
-    const { user, isLoggedIn, isOut } = this.state;
+    const { user, isLoggedIn, isOut, isLoading } = this.state;
     return (
-      <>
-        <AuthContext.Provider value={
-          {
-            user,
-            isLoggedIn,
-            login: this.userLogin,
-            signup: this.userSignUp,
-            invite: this.adminInvite,
-            completeSignUp: this.userCompleteSignUp,
-            logout: this.userLogOut,
-          }
-         }>
-          <Loading isOut={isOut}/>
-          {this.props.children}
-        </AuthContext.Provider>
+      <>{isLoading ? <Loading isOut={isOut}/> : <AuthContext.Provider value={
+        {
+          user,
+          isLoggedIn,
+          login: this.userLogin,
+          signup: this.userSignUp,
+          invite: this.adminInvite,
+          completeSignUp: this.userCompleteSignUp,
+          logout: this.userLogOut,
+        }
+       }>
+        <Loading isOut={isOut}/>
+        {this.props.children}
+      </AuthContext.Provider>}
+        
       
       </>
     )

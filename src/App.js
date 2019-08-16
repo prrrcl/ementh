@@ -29,17 +29,18 @@ function App() {
     <AuthProvider>
     
     {/* REVISAR ESTADO LOGIN */}
-    <MenuComponent/>
+   
  
     <main className="main-content">
       <Switch>
         <AdminRoute
          path="/invite" 
-         render={(props) => <Invite {...props}/>} 
+         render={(props) => <> <MenuComponent/><Invite {...props}/></>} 
         />
         <PrivateRoute 
-          exact path='/' 
-          render={(props) => <Home {...props} />} />
+          path='/' 
+          exact
+          render={(props) => <> <MenuComponent/><Home {...props} /></>} />
         <AnonRoute 
           exact
           path="/login" 
@@ -51,15 +52,15 @@ function App() {
         <PrivateRoute 
           exact
           path="/calendar" 
-          render={(props) => <Calendar {...props} />} />
+          render={(props) => <> <MenuComponent/><Calendar {...props} /></>} />
         <PrivateRoute 
           exact
           path="/chat" 
-          render={(props) => <Chat {...props} />}/>
+          render={(props) => <> <MenuComponent/><Chat {...props} /></>}/>
         <PrivateRoute 
           exact
           path="/friends" 
-          render={(props) => <Friends {...props} />} />
+          render={(props) => <> <MenuComponent/><Friends {...props} /></>} />
         <AnonRoute component={NotFound}/>
       </Switch>
     </main>

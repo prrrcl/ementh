@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,OAAO,AAAA,CACL,UAAU,CAAE,eAAc,CAAC,UAAU,CACtC,AACD,AAAA,SAAS,AAAA,CACP,OAAO,CAAE,EAAE,CACZ",
     "sources": [
         "ReserveClass.scss"
     ],

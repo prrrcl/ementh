@@ -19,12 +19,24 @@
     justify-content: space-evenly;
     li{
       position: relative;
+      height: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       a{
         color: $primary-color;
         text-decoration: none;
         display: flex;
         svg{
-          height: 28px;
+          height: 26px;
+        }
+      }
+
+      &:first-child{
+        a{
+          svg{
+            height: 32px;
+          }
         }
       }
       span{

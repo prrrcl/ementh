@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
+import classService from '../../../services/class-services';
 import './Home.min.css'
 import withAuth from '../../../hoc/withAuth';
 import { Power3, TimelineMax  } from "gsap/all";
@@ -7,6 +8,7 @@ import { Power3, TimelineMax  } from "gsap/all";
 const Home = (props) => {
 
   const [animation, setAnimation] = useState();
+  const [classes, setClasses] = useState();
 
   let items = useRef(null);
 
@@ -23,8 +25,17 @@ const Home = (props) => {
         items.children,
         0.1,
         { alpha: 1, y: 0, ease: Power3.easeOut },
-        0.1).play().delay(0.8))
+        0.1).play().delay(0.4))
   }, []);
+
+  useEffect(()=>{
+    const today = new Date();
+    classService.getClassesOfUser(today,props.user._id)
+    .then(response=>{
+      setClasses(response)
+    })
+  },[props.user._id])
+
 
   return (
     <>
@@ -32,31 +43,7 @@ const Home = (props) => {
     <section className="home-section" ref={elements => {
             items = elements;
           }}>
-      <Link to="/" className="pages-wrapper" onClick={props.animation}>
-
-        <article className="pages">
-          <div className="content-pages">Guia de ejercicios</div>
-        </article>
-
-      </Link>
-      <Link to="/" className="pages-wrapper">
-        <article className="pages">
-          <div className="content-pages">Benchmarks</div>
-        </article>
-
-      </Link>
-      <Link to="/calendar" className="pages-wrapper" onClick={props.animation}>
-
-        <article className="pages">
-          <div className="content-pages">Calendario</div>
-        </article>
-
-      </Link>
-      <Link to={`/friends/${props.user.username}`} className="pages-wrapper">
-        <article className="pages">
-          <div className="content-pages">Amigos</div>
-        </article>
-      </Link>
+      <h3 className="home-title">Today</h3>
     </section>
     
     </>

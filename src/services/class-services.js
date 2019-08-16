@@ -8,24 +8,33 @@ class ClassService {
     })
   }
 
-  bookClass(user, idClass){
-    return this.user.post('/bookclass', {user, idClass})
-      .then(({ data }) => data);
+  bookClass(user, classe){
+    return this.user.post('/bookclass', {user, classe})
+      .then(response => {
+        return response
+      });
   }
 
-  getClassesOfUser(user){
-    if(user){
-      return this.user.post('/classes', user)
-      .then(data => data)
+  delBookClass (user, classe) {
+    const userId = user._id;
+    const classeId = classe._id;
+    return this.user.post('/unsubclass', {userId, classeId})
+    .then(response => response)
+  }
+
+  getClasses(day, user){
+    if(day){
+      const data = {day, user}
+      return this.user.post('/getcalendardates',data)
+        .then(response => response)
     }
   }
 
-  getClasses(day){
+  getClassesOfUser(day, user){
     if(day){
-      return this.user.post('/getcalendardates', day)
-        .then(response =>{
-          return response
-      })
+      const data = {day, user};
+      return this.user.post('/getuserclasses', data)
+      .then(reponse=>reponse)
     }
   }
   // addOneApp(newApp) {
@@ -38,10 +47,7 @@ class ClassService {
   //   .then(response => response);
   // }
 
-  // delApp (id) {
-  //   return this.apps.delete(`/apps/${id}/delete`)
-  //   .then(response => response)
-  // }
+  
 
 }
 
