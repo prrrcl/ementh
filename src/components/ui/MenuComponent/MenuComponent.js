@@ -5,7 +5,7 @@ import withAuth from '../../../hoc/withAuth';
 
 import { ReactComponent as Ementh } from "../../../logotipo.svg";
 import { Power3, TimelineMax  } from "gsap/all";
-import './MenuComponent.css';
+import './MenuComponent.min.css';
 
 function MenuComponent(props) {
   
@@ -60,7 +60,7 @@ function MenuComponent(props) {
        <li><img src={props.user.profileImg} alt=""/></li>
        <li>
          <Link
-               to={"/"}
+               to={"/profile"}
                onClick={handleOpenMenu}
              >Perfil</Link>
        </li>

@@ -4,11 +4,16 @@ import classService from '../../../services/class-services';
 import './Home.min.css'
 import withAuth from '../../../hoc/withAuth';
 import { Power3, TimelineMax  } from "gsap/all";
+import HomeAdmin from './../../ui/HomeAdmin/HomeAdmin'
+import moment from 'moment';
+import 'moment/locale/es';
+import ReserveClassWithDate from '../../ui/ReserveClassWithDate/ReserveClassWithDate';
+moment.locale('es')
 
 const Home = (props) => {
 
   const [animation, setAnimation] = useState();
-  const [classes, setClasses] = useState();
+  const [classes, setClasses] = useState([]);
 
   let items = useRef(null);
 
@@ -29,22 +34,49 @@ const Home = (props) => {
   }, []);
 
   useEffect(()=>{
-    const today = new Date();
-    classService.getClassesOfUser(today,props.user._id)
+    classService.getClassesOfUser(props.user._id)
     .then(response=>{
-      setClasses(response)
+      const newArr = [...response.data];
+      const filtered = newArr.filter((clase)=>{
+        return clase.amI;
+      })
+      setClasses(filtered)
     })
   },[props.user._id])
 
-
+  
+  const { isAdmin } = props.user;
   return (
     <>
+    {isAdmin 
+    ?
+    (<>
+    <HomeAdmin action="createclass"/>
+    <HomeAdmin action="inviteuser"/>
     
-    <section className="home-section" ref={elements => {
-            items = elements;
-          }}>
-      <h3 className="home-title">Today</h3>
-    </section>
+     
+    </>)
+    :
+    (<section className="home-section hours" ref={elements => {
+      items = elements;
+    }}>
+    <h3 className="home-title">Mis reservas</h3>
+    {classes 
+    ? (
+      classes.map((classe)=>{
+        return(
+          <ReserveClassWithDate key={classe._id} classe={classe}/>
+        )
+      })
+    )
+    :
+    (
+    <p>¡No te has apuntado a ninguna clase todavia!</p>
+    ) 
+    }
+    </section>)
+    }
+    
     
     </>
   )

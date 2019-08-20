@@ -15,6 +15,7 @@ import Chat from './components/pages/Chat/Chat'
 import Friends from './components/pages/Friends/Friends'
 import CompleteSignUp from './components/pages/CompleteSignUp/CompleteSignUp'
 import Invite from './components/pages/Invite/Invite'
+import Profile from './components/pages/Profile/Profile';
 
 import MenuComponent from './components/ui/MenuComponent/MenuComponent';
 import MenuSubComponent from './components/ui/MenuSubComponent/MenuSubComponent';
@@ -53,6 +54,10 @@ function App() {
           exact
           path="/calendar" 
           render={(props) => <> <MenuComponent/><Calendar {...props} /></>} />
+        <PrivateRoute 
+          exact
+          path="/profile" 
+          render={(props) => <> <MenuComponent/><Profile {...props} /></>} />
         <PrivateRoute 
           exact
           path="/chat" 

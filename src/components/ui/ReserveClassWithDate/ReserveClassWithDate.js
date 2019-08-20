@@ -3,19 +3,19 @@ import withAuth from '../../../hoc/withAuth';
 import moment from 'moment';
 import 'moment/locale/es';
 import './ReserveClass.min.css'
+
 import classService from '../../../services/class-services'
 moment.locale('es');
 
-const ReserveClass = (props) => {
+const ReserveClassWithDate = (props) => {
   const {classe, user} = props;
   const [isListed, setIsListed] = useState(false);
   const [currentClasse, setCurrentClasse] = useState(classe);
-  const [watchParticipants, setWatchParticipants] = useState(false)
   const classeBooked = isListed ? 'booked' : null;
-
+  
   useEffect(()=>{
-    setIsListed(classe.AmI)
-  },[classe.AmI]);
+    setIsListed(classe.amI)
+  },[classe.amI]);
 
   const handleBook = (event, user, classe) =>{
    event.preventDefault();
@@ -38,23 +38,8 @@ const ReserveClass = (props) => {
       return response
    });
    }
-  const showParticipants = () => {
-    if(watchParticipants){
-      setWatchParticipants(false)
-    }else{
-      setWatchParticipants(true)
-    }
-  }
-  const claseParticipantes = watchParticipants ? 'is-opened' : '';
   return (
     <form key={classe._id}>
-      <div className={`participantes ${claseParticipantes}`}>
-        {classe.participants.map((participante)=>{
-          return(
-            <div key={participante._id}>{participante.username}</div>
-          )
-        })}
-      </div>
       <article>
         <div className="boxDad">
         <div className="box">
@@ -62,7 +47,7 @@ const ReserveClass = (props) => {
             <h3>{classe.typeOfClass}</h3>
             <p>{moment(classe.date).format('LT')}h</p>
           </div>
-          <div className="capacity" onClick={showParticipants}>
+          <div className="capacity">
             {currentClasse.participants.length}/{currentClasse.maxParticipants}
           </div>
           <span>
@@ -97,4 +82,4 @@ const ReserveClass = (props) => {
     </form>
   )
 }
-export default withAuth(ReserveClass);
+export default withAuth(ReserveClassWithDate);

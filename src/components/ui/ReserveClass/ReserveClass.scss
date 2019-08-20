@@ -4,3 +4,13 @@
 .disabled{
   opacity: .3;
 }
+.capacity{
+  cursor: pointer;
+}
+.participantes{
+  position: absolute;
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  top: 25%;
+}

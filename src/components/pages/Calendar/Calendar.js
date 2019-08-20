@@ -15,6 +15,9 @@ const Calendar = (props) => {
   const [day, setDay] = useState(null);
   const [lastDaySelected, setLastDaySelected] = useState(null);
   const [classes, setClasses] = useState(null);
+  const [participantsListToggle, setParticipantsListToggle] = useState(false);
+  const [listParticipants, setListParticipants] = useState();
+
   const newDate = (day) =>{
     return new Date(day)
   }
@@ -43,15 +46,22 @@ const Calendar = (props) => {
     })
    return classesFromDb;
   }
- 
+  const { isAdmin } = props.user;
+  
   return (
 <>
     <div className={`select-date ${classHasDay}`}>
+
     <h1 className="title-page">Calendario</h1>
       <div className="container">
         <div className="content-calendar">
-          <DayPicker onDayClick={(day) => {setDay({ day }); setLastDaySelected(day); handlePickDay(day)} }/>
-
+          <DayPicker onDayClick={
+            (day) => {
+              setDay({ day });
+              setLastDaySelected(day); 
+              handlePickDay(day);
+              } 
+              }/>
           <p>
           ¡Selecciona un día en el calendario
             y elige un horario para reservar tu clase!
@@ -61,6 +71,7 @@ const Calendar = (props) => {
           <span className={`go-back ${classAnimBack}`} onClick={handleDayOff}>t</span>
           {lastDaySelected &&
             <article className="choose-hours">
+              
               <header>
                 <h3>{upper(moment(newDate(lastDaySelected)).format('dddd'))}</h3>
                 <h4>{moment(newDate(lastDaySelected)).format('LL')}</h4>

@@ -17,7 +17,7 @@ function MenuSubComponent(props) {
         <li><Link to={"/"}><Home/></Link></li>
         <li><Link to={"/calendar"}><Ementh/></Link></li>
         <li><Link to={"/chat"}>b</Link><span></span></li>
-        <li><Link to={"/"}>n</Link></li>
+        <li><Link to={"/profile"}>n</Link></li>
       </ul>
     </footer>
     }

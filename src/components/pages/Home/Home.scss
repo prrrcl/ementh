@@ -9,3 +9,109 @@
     text-align: center;
   }
 }
+.toggle{
+  width: 20px;
+  height: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  background: $primary-color;
+  color: $second-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $transition;
+  font-weight: 100;
+  font-size: 26px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin: 0 20px;
+  top:-45px;
+}
+.title{
+  font-weight: 300;
+  font-size:24px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.action-admin{
+  padding: 15px 0 0;
+  border-bottom: 1px solid #ccc;
+}
+.toggle.is-opened{
+  transform: rotate(135deg);
+  transition: $transition;
+}
+.form-add-container.is-opened{
+  max-height: 1000px;
+  transition:$transition;
+}
+.form-add-container{
+  position: relative;
+  max-height: 0;
+  transition:$transition;
+  .form-add{
+    transform: scaleY(0);
+    transform-origin: top;
+    display: flex;
+    transition:$transition;
+    position:relative;
+    flex-direction: column;
+    &:after{
+      height: 96%;
+      width: 100%;
+      content:'';
+      background: $primary-color;
+      position: absolute;
+      left:0;
+      bottom:0;
+      transform: scaleY(1);
+      transition:$transition;
+      transition-duration: .4s;
+      transform-origin: bottom center;
+    }
+  }
+  .form-add.is-opened{
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: $transition;
+    &:after{
+      transform: scaleY(0);
+      transform-origin: bottom center;
+      transition: $transition 1s;
+      transition-duration: .4s;
+    }
+  }
+}
+.form-create-class{
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  width: 100%;
+  font-size: 1.2rem;
+  input, select{
+    border: 1px solid $primary-color;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom:10px;
+    font-size: 1.2rem;
+    font-family: $font;
+    width: 100%;
+    &:focus{
+      outline: none;
+      border-color:#ccc;
+    }
+  }
+  label{
+    margin:15px 0;
+  }
+}
+.react-datepicker__day--selected{
+  background-color: $primary-color !important;
+}
+.react-datepicker__input-container {
+  width: 100%;
+  input{
+    width: 100%;
+  }
+}

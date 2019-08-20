@@ -2,6 +2,7 @@
 @import '../../scss/vars';
 .menu-bottom{
   font-family: $icons;
+  border-top: 1px solid #ccc;
   position: fixed;
   z-index: 10;
   bottom: 0;

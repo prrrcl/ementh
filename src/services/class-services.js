@@ -14,7 +14,10 @@ class ClassService {
         return response
       });
   }
-
+  addClass(typeOfClass, maxParticipants, date){
+    return this.user.post('/addclass', {typeOfClass, maxParticipants, date})
+    .then(response => response)
+  }
   delBookClass (user, classe) {
     const userId = user._id;
     const classeId = classe._id;
@@ -29,10 +32,14 @@ class ClassService {
         .then(response => response)
     }
   }
-
-  getClassesOfUser(day, user){
+  getAllClassesByDay(day){
     if(day){
-      const data = {day, user};
+      return this.user.post('/getallclass')
+    }
+  }
+  getClassesOfUser(user){
+    if(user){
+      const data = {user};
       return this.user.post('/getuserclasses', data)
       .then(reponse=>reponse)
     }

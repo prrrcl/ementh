@@ -14,9 +14,9 @@ class AuthService {
       .then(({ data }) => data);
   }
   invite(user) {
-    const {email} = user; 
-    return this.auth.post('/auth/invite', {email})
-    .then(({data})=> data)
+    const {email} = user;
+    return this.auth.post('/auth/presignup', {email})
+    .then((data)=> data)
   }
   completeSignUp(user){
     const { username, email, password, token } = user;
