@@ -96,7 +96,7 @@ class AuthProvider extends Component {
           signup: this.userSignUp,
           invite: this.adminInvite,
           completeSignUp: this.userCompleteSignUp,
-          logout: this.userLogOut,
+          logout: this.userLogOut
         }
        }>
         <Loading isOut={isOut}/>

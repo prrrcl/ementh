@@ -13,6 +13,7 @@ const Profile = (props) => {
     </div>
       <h3>{user.username}</h3>
       <Link className="profile-link" to={`/user/${user._id}/benchmarks`}>benchmarks</Link>
+      <Link className="profile-link" to={`/user/${user._id}/friends`}>friends</Link>
     </section>
   )
 }

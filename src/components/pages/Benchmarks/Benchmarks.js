@@ -137,7 +137,7 @@ export default withAuth(withFormik({
   handleSubmit(values, {setErrors, ...bag} ){ //  , {setSubmitting, setErrors, resetForm} con Form, ejecuta esta acción sin llamarla en el jsx
    //call to service
    classService.addBenchMark(values, bag.props.match.params.idbench)
-   .then((response)=>{
+   .then(()=>{
       bag.props.history.goBack()
    })
    .catch((err)=>{

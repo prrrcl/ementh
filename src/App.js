@@ -24,6 +24,7 @@ import MenuSubComponent from './components/ui/MenuSubComponent/MenuSubComponent'
 
 import './App.css';
 import './components/core.min.css';
+import ChatList from './components/pages/ChatList/ChatList';
 
 function App() {
 
@@ -75,16 +76,19 @@ function App() {
         <PrivateRoute 
           exact
           path="/chat" 
+          render={(props) => <> <MenuComponent/><ChatList {...props} /></>}/>
+        <PrivateRoute 
+          exact
+          path="/chat/:id" 
           render={(props) => <> <MenuComponent/><Chat {...props} /></>}/>
         <PrivateRoute 
           exact
-          path="/friends" 
+          path="/user/:id/friends" 
           render={(props) => <> <MenuComponent/><Friends {...props} /></>} />
         <AnonRoute component={NotFound}/>
       </Switch>
     </main>
-    
-    {/* REVISAR ESTADO LOGIN */}
+   
     <MenuSubComponent/>
 
     </AuthProvider>

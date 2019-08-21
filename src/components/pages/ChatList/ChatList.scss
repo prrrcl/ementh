@@ -1,0 +1,11 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
+.chatlist{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 30px;
+}
+.no-chat{
+  margin: 90px 0 0;
+}

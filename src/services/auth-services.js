@@ -46,6 +46,10 @@ class AuthService {
     return this.auth.get('/auth/me')
     .then(response => response.data)
   }
+  getUser(id){
+    return this.auth.get(`/auth/user/${id}`)
+    .then(response => response)
+  }
 }
 
 const authService = new AuthService();
