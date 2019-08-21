@@ -19,6 +19,7 @@
       width:50%;
       p{
         text-align: center;
+        padding: 15px;
       }
     }
     .content-hours{
@@ -32,6 +33,14 @@
   .container{
     transform: translateX(-50%);
     transition: $transition;
+  }
+}
+.modal{
+  h3{
+    text-align: center;
+  }
+  p{
+    padding: 0 !important; 
   }
 }
 .hours{

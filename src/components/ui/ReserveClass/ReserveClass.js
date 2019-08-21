@@ -49,11 +49,22 @@ const ReserveClass = (props) => {
   return (
     <form key={classe._id}>
       <div className={`participantes ${claseParticipantes}`}>
+          <h3>Usuarios con reserva</h3>
+        <section>
+        <div className="close-pop-up" onClick={showParticipants}>+</div>
+        {classe.participants.length < 1 && 
+          <p>Nadie ha reservado esta clase... ¡Por el momento!</p>
+          }
         {classe.participants.map((participante)=>{
           return(
-            <div key={participante._id}>{participante.username}</div>
+            <article key={participante._id}>
+              <img src={participante.profileImg} alt={participante.username}/>
+            <p>{participante.username}</p>
+            </article>
           )
         })}
+        </section>
+        
       </div>
       <article>
         <div className="boxDad">

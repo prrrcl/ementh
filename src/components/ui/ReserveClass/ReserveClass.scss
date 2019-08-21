@@ -1,3 +1,5 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
 .booked{
   background: rgba(0,0,0,.8) !important;
 }
@@ -6,11 +8,101 @@
 }
 .capacity{
   cursor: pointer;
+  position: relative;
+  background: rgba(0, 0, 0, .08);
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: $transition;
+  transform: translateY(0);
+  &:after{
+    content: '+';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -110%) rotate(-130deg);
+    transition: $transition;
+  }
+  &:hover{
+    transform: translateY(3px);
+    transition: $transition;
+  }
+  &:hover:after{
+    opacity: 1;
+    transform: translate(-50%, -85%) rotate(0);
+    transition: $transition;
+  }
 }
 .participantes{
   position: absolute;
   width: 100%;
-  max-width: 430px;
+  max-width: 45%;
   height: 100%;
-  top: 25%;
+  top: 18%;
+  pointer-events: none;
+  opacity: 0;
+  transition: $transition;
+  background: $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: scroll;
+  h3{
+    color: $second-color;
+    font-weight: 200;
+    top:0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,16px);
+  }
+  section{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 30px;
+    p{
+      color:$second-color;
+      text-align: center;
+      margin-top: 25px;
+      width: 100%;
+    }
+    article{
+      display: flex;
+      width: 100%;
+      max-width: 100px;
+      flex-direction: column;
+      p{
+        text-align: center;
+        color: $second-color;
+        padding: 5px 0 0 ;
+      }
+      img{
+        width: 100%;
+        border-radius: 10px;
+      }
+    }
+    .close-pop-up{
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 36px;
+      color: $second-color;
+      padding: 0 15px;
+      transform: rotate(-90deg);
+      transition: $transition;
+      cursor: pointer
+    }
+  }
+}
+.participantes.is-opened{
+  top:25%;
+  pointer-events: all;
+  opacity: 1;
+  transition: $transition;
+  section{
+    .close-pop-up{
+      transform: rotate(45deg);
+      transition:$transition
+    }
+  }
 }

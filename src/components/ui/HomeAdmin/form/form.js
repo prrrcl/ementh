@@ -44,7 +44,7 @@ export default withFormik({
     if(response.status === 200){
       resetForm()
       setErrors({
-        formNoError: `Clase creada satisfactoriamente para el: ${moment(response.date).format('L')}`
+        formNoError: `Clase creada satisfactoriamente.`
       })
     }else if(response.status === 405){
       

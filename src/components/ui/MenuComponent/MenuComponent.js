@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import withAuth from '../../../hoc/withAuth';
 
 import { ReactComponent as Ementh } from "../../../logotipo.svg";
-import { Power3, TimelineMax  } from "gsap/all";
+import { Power3, TimelineMax, CSSPlugin  } from "gsap/all";
 import './MenuComponent.min.css';
+
+const C = CSSPlugin; 
 
 function MenuComponent(props) {
   

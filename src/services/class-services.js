@@ -44,6 +44,27 @@ class ClassService {
       .then(reponse=>reponse)
     }
   }
+  getBenchmarks(){
+    return this.user.get('/benchmarks')
+    .then(response => response)
+  }
+  addBenchMark(values, idbench){
+    const data = {values, idbench};
+    return this.user.post('/addmark', data)
+    .then(response => response)
+  }
+  getUser(idUser){
+    return this.user.get(`/user/${idUser}`)
+    .then(response=>response)
+  }
+  addBenchmark(data){
+    return this.user.post('/addbenchmark', data)
+    .then(response => response)
+  }
+  getMarks(user, bench){
+    return this.user.get(`/getmarks/${user}/${bench}`)
+    .then(response => response)
+  }
   // addOneApp(newApp) {
   //   return this.apps.post('/app/new', newApp)
   //   .then(response => response);

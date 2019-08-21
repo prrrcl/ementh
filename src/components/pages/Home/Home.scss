@@ -102,10 +102,13 @@
       border-color:#ccc;
     }
   }
+}
+
   label{
     margin:15px 0;
+    display: block;
   }
-}
+
 .react-datepicker__day--selected{
   background-color: $primary-color !important;
 }
