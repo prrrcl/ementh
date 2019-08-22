@@ -15,8 +15,7 @@ const Calendar = (props) => {
   const [day, setDay] = useState(null);
   const [lastDaySelected, setLastDaySelected] = useState(null);
   const [classes, setClasses] = useState(null);
-  const [participantsListToggle, setParticipantsListToggle] = useState(false);
-  const [listParticipants, setListParticipants] = useState();
+
 
   const newDate = (day) =>{
     return new Date(day)

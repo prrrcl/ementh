@@ -5,7 +5,7 @@ import withAuth from '../../../hoc/withAuth'
 const ChatList = (props) => {
   return (
     <section className="chatlist">
-      <span class="create-bench">+</span>
+      <span className="toggle add-chat">+</span>
       {props.user.chats < 1 && 
       <p className="no-chat">No tienes chats abiertos, empieza a chatear pulsando el botón +.</p>
       }

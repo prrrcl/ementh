@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup'; // Para validaciónimport { placeholder } from '@babel/types';
 import authService from '../../../services/auth-services';
 import moment from 'moment';
+import withAuth from '../../../hoc/withAuth'
 import 'moment/locale/es';
 moment.locale('es')
 
@@ -36,7 +37,7 @@ const FormInvite = ({errors, touched, isSubmitting, login, ...props}) => {
   )
 }
 
-export default withFormik({
+export default withAuth(withFormik({
   mapPropsToValues(){// este método recoge las props del componente (si las hubiera, y las muestro si las hay)
     return({
       email:''
@@ -44,7 +45,8 @@ export default withFormik({
   },
   handleSubmit(values, {setSubmitting, setErrors, resetForm, ...bag}){
     const {email} = values;
-    authService.invite({email})
+    const owner = bag.props.user._id;
+   authService.invite({email, owner})
     .then((response) => {
       console.log(response)
       if(response.status === 200){
@@ -67,4 +69,4 @@ export default withFormik({
         .email('Debes introducir un mail válido.')
         .required('Es obligatorio rellenar el campo de mail.')
     })
-})(FormInvite)
+})(FormInvite))

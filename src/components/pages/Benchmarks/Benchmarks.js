@@ -14,13 +14,12 @@ const Benchmarks = ({errors, touched, isSubmitting, login, ...props}) => {
   const [selectedBench, setSelectedBench] = useState([]);
   const [isOpen, setIsOpen] = useState(0);
   const [nameBench, setNameBench] = useState();
-  const { idbench } = props.match.params;
-
+  const { id,idbench } = props.match.params;
   
   useEffect(()=>{
 
     if(idbench){
-      classService.getMarks(props.user._id, idbench)
+      classService.getMarks(id, idbench)
     .then(response => {
       setSelectedBench(response.data)
       setIsOpen(1)
@@ -34,14 +33,14 @@ const Benchmarks = ({errors, touched, isSubmitting, login, ...props}) => {
       setBenchmarks(response.data)
     })
 
-  },[idbench, props.user._id])
+  },[id, idbench])
 
   const openForm = (bench) =>{
     setIsOpen(2)
   }
 
   const handleSelectBench =(idBench) =>{
-    classService.getMarks(props.user._id, idBench)
+    classService.getMarks(id, idBench)
     .then(response => {
       setSelectedBench(response.data)
     })
@@ -59,7 +58,7 @@ const Benchmarks = ({errors, touched, isSubmitting, login, ...props}) => {
             {benchmarks.map((bench)=>{
               return(
                 <article className="benchmark" key={bench._id}>
-                  <Link to={`/user/${props.user._id}/benchmarks/${bench._id}`} onClick={()=>{handleSelectBench(bench._id);setNameBench(bench.name)}}>{bench.name}</Link>
+                  <Link to={`/user/${id}/benchmarks/${bench._id}`} onClick={()=>{handleSelectBench(bench._id);setNameBench(bench.name)}}>{bench.name}</Link>
                 </article>
               )
             })}

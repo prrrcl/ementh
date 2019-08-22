@@ -11,7 +11,7 @@ const C = CSSPlugin;
 
 function MenuComponent(props) {
   
-  const { logout, isLoggedIn } = props; 
+  const { logout } = props; 
   const [isOpened, setOpened] = useState(false);
   const [animation, setAnimation] = useState();
   

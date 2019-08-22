@@ -11,7 +11,6 @@ import ReserveClassWithDate from '../../ui/ReserveClassWithDate/ReserveClassWith
 moment.locale('es')
 
 const Home = (props) => {
-
   const [animation, setAnimation] = useState();
   const [classes, setClasses] = useState([]);
 
