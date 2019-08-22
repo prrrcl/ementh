@@ -5,7 +5,6 @@
   margin-bottom: 30px;
 }
 .friend-link{
-  width: 80%;
   text-decoration: none;
   color: $primary-color;
 }
@@ -20,7 +19,8 @@
     width: 100%;
     background: rgba(0, 0, 0, .04);
     border-radius: 5px;
-    a{
+    margin-bottom: 25px;
+    a.send-message{
       background: $primary-color;
       color:$second-color;
       padding: 3px 8px;

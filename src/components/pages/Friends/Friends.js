@@ -26,14 +26,14 @@ const Friends = (props) => {
               <article className="friend" key={friend._id}>
                 <div>
                 <Link className="friend-link" to={`/user/${friend._id}`}>
-                <img src={friend.profileImg} alt={friend.username}/>
+                  <img src={friend.profileImg} alt={friend.username}/>
                 </Link>
                 </div>
                 <div className="info">
                 <Link className="friend-link" to={`/user/${friend._id}`}>
                   <h4>{friend.username}</h4>
                 </Link>
-                  <Link to={'/'}>Enviar mensaje</Link>
+                  <Link className="send-message" to={'/'}>Enviar mensaje</Link>
                 </div>
               </article>
             )

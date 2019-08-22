@@ -5,7 +5,66 @@
   flex-direction: column;
   position: relative;
   padding: 30px;
+  height: calc(100vh - 158px);
 }
 .no-chat{
-  margin: 90px 0 0;
+  margin: 90px 0 400px;
+}
+.add-chat{
+  margin-top: 60px;
+  padding: 20px;
+  margin-right: 30px;
+}
+.wrapper-chat-list{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.friend-chat{
+  margin: auto;
+  background: $second-color;
+  color:$primary-color;
+  padding: 10px 20px;
+  margin: 20px 30%;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.friend-list-chat{
+  width: calc(100% - 40px);
+  background: $primary-color;
+  position:absolute;
+  left:0;
+  top: 70px;
+  max-height: 0;
+  overflow: hidden;
+  margin: 20px;
+  transition: $transition;
+  h3{
+    padding: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    color:$second-color;
+    position: relative;
+    &:after{
+      content:'';
+      position: absolute;
+      bottom: 0;
+      width: 80%;
+      height: 2px;
+      background: rgba(255, 255, 255, .1);
+      left: 50%;
+      transform: translateX(-50%); 
+    }
+  }
+  article{
+    padding: 20px;
+    color: $second-color;
+  }
+}
+.friend-list-chat.is-opened{
+  transition: $transition;
+  max-height: 500px;
+  overflow: scroll;
 }

@@ -65,6 +65,12 @@ class ClassService {
     return this.user.get(`/getmarks/${user}/${bench}`)
     .then(response => response)
   }
+  createRoom(user,friend){
+    const data = {user,friend};
+    console.log(data)
+    return this.user.post(`/createroom`, data )
+    .then(response=>response)
+  }
   // addOneApp(newApp) {
   //   return this.apps.post('/app/new', newApp)
   //   .then(response => response);
