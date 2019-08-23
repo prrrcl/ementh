@@ -71,18 +71,15 @@ class ClassService {
     return this.user.post(`/createroom`, data )
     .then(response=>response)
   }
-  // addOneApp(newApp) {
-  //   return this.apps.post('/app/new', newApp)
-  //   .then(response => response);
-  // }
-
-  // updateOneApp (id, updatedApp){
-  //   return this.apps.put(`/apps/${id}/update`, updatedApp)
-  //   .then(response => response);
-  // }
-
-  
-
+  loginRoom(room){
+    return this.user.get(`/loginroom/${room}`)
+    .then(response=>response)
+  }
+  pushMessage(message,idChat,idUser){
+    const data = {message,idChat,idUser};
+    return this.user.post(`/postmessage`,data)
+    .then(response=>response)
+  }
 }
 
 const classService = new ClassService();

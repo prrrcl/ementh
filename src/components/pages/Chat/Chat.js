@@ -1,39 +1,66 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react';
 import io from 'socket.io-client';
-import withAuth from '../../../hoc/withAuth'
+import './Chat.min.css';
+import withAuth from '../../../hoc/withAuth';
+import classService from '../../../services/class-services'
+
+import moment from 'moment';
+import 'moment/locale/es';
+moment.locale('es')
 
 const Chat = (props)=> {
   const [messages, setMessages] = useState([]);
   const [oldmessages, setOldMessages] = useState([]);
+  const [error,setError] = useState();
   const [socket] = useState(io(`${process.env.REACT_APP_BACKEND_DOMAIN}`));
-    socket.on('create', () => { socket.join(props.match.params.id); })
+  
+  socket.on('create', () => { socket.join(props.match.params.id); })
     
-  useEffect(function () {
-   let isSubscribed = true
+  useEffect(() =>{
+    let isSubscribed = true
+    scrollToBottom();
    socket.on('message', message =>{
     if(isSubscribed){
      setMessages([...messages, message])}
    })
-   return () => isSubscribed = false
-  }, [messages, socket]);
+   
+   return () => isSubscribed = false;
+  }, [error, messages, props, socket]);
   
-    // useEffect(() => {
-    //     const id = props.match.params.id
-    //     chat.getAllMessages(id)
-    //     .then(r=> setOldMessages(r.data[0]))
-    //     .catch(e=>console.log(e))
-    // }, [props.match.params.id])
+  useEffect(()=>{
+    classService.loginRoom(props.match.params.id)
+    .then((response)=>{
+      if(response.status === 200){
+        setOldMessages(response.data)
+      }
+    })
+    .catch(()=>{
+      setError('No tienes acceso a este chat.')
+    })
+
+  },[props.match.params.id])
+
+  const scrollToBottom = () => {
+    let objDiv = document.querySelector(".list-mess");
+    let objDiv2 = document.querySelector(".chat-form");
+    console.log(objDiv)
+    objDiv.scrollTop = objDiv.scrollHeight;
+    objDiv2.scrollTop = objDiv2.scrollHeight;
+  }
+
   const handleSubmit = (e) =>{
-    const body = props.user.username + ':    ' + e.target.value;
+    const body = e.target.value;
     if(e.keyCode === 13 && body){
+      scrollToBottom();
       const message = {
         body,
         from: socket.id,
-        room: props.match.params.id
+        room: props.match.params.id,
+        date: new Date()
       }
-    // chat.updateOneM({body}, props.match.params.id)
-    //  .then(response => {console.log(response)})
-    //  .catch(e=>console.log(e))
+      classService.pushMessage(body, oldmessages._id, props.user._id)
+      .then(response=>response)
+   
       setMessages([...messages, message]);
       socket.emit('message', message);
       e.target.value = ''
@@ -42,10 +69,16 @@ const Chat = (props)=> {
   const messagesDestructured = messages.map((message, i) =>{
       if(message.body.room === props.match.params.id || message.from === socket.id){
           const {body} = message
+          const classOtheruser = body.body ? 'other-user-message' : 'me-message'
           return(
-            <li key={i}>
-            {body.body ? `${body.body}` : `${body}`}
+            <>
+            <li className={classOtheruser} key={i}>
+            {body.body 
+              ? `${body.body}` 
+              : `${body}`}
+              <span>{moment(message.date).format('LT')}</span>
           </li>
+          </>
           )
       }else{
         return null;
@@ -55,10 +88,20 @@ const Chat = (props)=> {
   return (
       <>
     <div className='chat-form'>
-      <ul>
-          {oldmessages.chat ? oldmessages.chat.map((message, i) => {
-              return <li key={i}>
-              {  `${message}`}
+    {error 
+      ?
+      (
+       <p>{error}</p> 
+      )
+      :
+      (
+        <>
+        <ul className="list-mess">
+          {oldmessages.messages ? oldmessages.messages.map((message, i) => {
+              const classMessage = message.idUser === props.user._id ? 'me-message' : 'other-user-message';
+              return <li className={classMessage} key={i}>
+              {  `${message.message}`}
+              <span>{moment(message.createdAt).format('LT')}</span>
             </li>
           }): null}
         {messagesDestructured}
@@ -67,6 +110,10 @@ const Chat = (props)=> {
       type="text" 
       placeholder="Escribe algo"
       onKeyUp={handleSubmit}/>
+      </>
+      )
+    }
+      
     </div>
     </>
   )

@@ -96,6 +96,7 @@
 }
 .participantes.is-opened{
   top:25%;
+  z-index:99;
   pointer-events: all;
   opacity: 1;
   transition: $transition;

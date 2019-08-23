@@ -9,14 +9,16 @@ const ChatList = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const classToggle = isOpen ? ' is-opened' : '';
   const [friends, setFriends] = useState();
+  const [chats,setChats] = useState();
 
   useEffect(()=>{
     authService.getUser(props.user._id)
     .then(response => {
       setFriends(response.data.friends)
+      setChats(response.data.chats)
     })
   },[props.user._id])
-  
+
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -29,13 +31,18 @@ const ChatList = (props) => {
     <section className="chatlist">
       <span onClick={toggle} className={`toggle add-chat${classToggle}`}>+</span>
       
-      {props.user.chats.length < 1 && 
+      {chats < 1 && 
         <p className="no-chat">No tienes chats abiertos, empieza a chatear pulsando el botón +.</p>
       }
-        {props.user.chats.map((chat)=>{
+        {chats && chats.map((chat)=>{
           return(
-            <article key={chat._id}>
-
+            <article className="item-chat-list" key={chat._id}>
+              {props.user.username === chat.userOne.username 
+              ? (<img alt={chat.userTwo.username} src={chat.userTwo.profileImg}/>)
+              : (<img alt={chat.userOne.username} src={chat.userOne.profileImg}/>)
+              }
+               
+              <Link to={`/chat/${chat.sala}`}><p>{props.user.username === chat.userOne.username ? chat.userTwo.username : chat.userOne.username}</p></Link>
             </article>
           )
         })}
@@ -46,9 +53,11 @@ const ChatList = (props) => {
           ? (
             friends.map((friend)=>{
               return (
+                <>
                 <Link onClick={()=>createRoom(friend._id)} className="friend-chat" to={`/chat/${props.user.username}-${friend.username}`} key={friend._id}>
-                  {friend.username}
+                 {friend.username}
                 </Link>
+                </>
               )
             })
           )
